@@ -3,7 +3,7 @@ package pl.waw.great.Collections;
 
 public class MyArrayList implements MyList {
 
-    private String[] elements = new String[16];
+    private final String[] elements = new String[16];
     private int index = 0;
 
     public MyArrayList() {
@@ -62,7 +62,6 @@ public class MyArrayList implements MyList {
                 return i;
             }
         }
-
         return -1;
     }
 

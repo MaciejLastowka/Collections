@@ -1,5 +1,6 @@
 package pl.waw.great.Collections;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -7,47 +8,38 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyArrayListTest {
+    private MyArrayList list;
+
+    @BeforeEach
+    void setUp(){
+        list = new MyArrayList();
+        list.add("Bułka");
+        list.add("Chleb");
+        list.add("Masło");
+    }
 
     @Test
     void add() {
-        MyArrayList list = new MyArrayList();
-
-        list.add("Bułka");
-        list.add("Chleb");
-
         list.size();
-        assertEquals(2, list.size());
-
+        assertEquals(3, list.size());
     }
 
     @Test
     void get() {
-        MyArrayList list = new MyArrayList();
-        list.add("Bułka");
-        list.add("Chleb");
-        String s = (list.get(0));
-        assertEquals("Bułka", s );
+        String index = (list.get(0));
+        assertEquals("Bułka", index);
     }
 
     @Test
     void set() {
-        MyArrayList list = new MyArrayList();
-        list.add("Bułka");
-        list.add("Chleb");
+        String chleb = list.set(1, "BURAK");
 
-        String Chleb = list.set(1, "BURAK");
-        assertEquals("Chleb",Chleb);
+        assertEquals("Chleb", chleb);
         assertEquals(list.get(1), "BURAK");
-
     }
 
     @Test
     void remove() {
-        MyArrayList list = new MyArrayList();
-        list.add("Bułka");
-        list.add("Chleb");
-        list.add("Masło");
-
         String remove = list.remove(0);
 
         assertEquals("Bułka", remove);
@@ -57,28 +49,16 @@ class MyArrayListTest {
 
     @Test
     void testRemove() {
-        MyArrayList list = new MyArrayList();
-        list.add("Bułka");
-        list.add("Chleb");
-        list.add("Masło");
+        boolean isRemoved = list.remove("Bułka");
 
-        assertEquals(0,"Bułka");
-
+        assertTrue(isRemoved);
+        assertEquals(list.get(0), "Chleb");
+        assertEquals(list.get(1), "Masło");
     }
 
     @Test
     void indexOf() {
-        MyArrayList list = new MyArrayList();
-        list.add("Bułka");
-        list.add("Chleb");
-        list.add("Masło");
-
-        boolean isRemoved = list.remove("Bułka");
-        assertTrue(isRemoved);
-
-        assertEquals(list.get(0), "Chleb");
-        assertEquals(list.get(1), "Masło");
-
+        assertEquals(0, list.indexOf("Bułka"));
     }
 }
 
